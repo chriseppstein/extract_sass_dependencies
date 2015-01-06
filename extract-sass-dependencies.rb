@@ -27,9 +27,9 @@ class DependencyExtractor
     files.map {|f| analyze_file(f) }
   end
 
-  def analyze_file(f, importer = importer)
-    children = checker.send(:dependencies, f, importer).map{|c| analyze_file(*c) }
-    Asset.new(f, importer, children)
+  def analyze_file(f, my_importer = importer)
+    children = checker.send(:dependencies, f, my_importer).map{|c| analyze_file(*c) }
+    Asset.new(f, my_importer, children)
   end
 
   def importer
